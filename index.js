@@ -76,9 +76,9 @@ function mostrarMenu() {
 
 function mostrar_guantes() {
   let lista = "";
-  arreglo_guantes.forEach((g) => {
-    lista += g.mostrar_descripcion() + "\n";
-  });
+  for (let i = 0; i < arreglo_guantes.length; i++) {
+    lista += arreglo_guantes[i].mostrar_descripcion() + "\n";
+  }
   return lista;
 }
 
@@ -126,9 +126,10 @@ function mostrarTicketFinal() {
   }
 
   let detalle = "Ticket de compra:\n\n";
-  carrito.forEach((g) => {
-    detalle += g.mostrar_descripcion() + "\n";
-  });
+
+  for (let i = 0; i < carrito.length; i++) {
+    detalle += carrito[i].mostrar_descripcion() + "\n";
+  }
 
   let total = calcularTotal();
   detalle += "\n Total gastado: $ " + total;
