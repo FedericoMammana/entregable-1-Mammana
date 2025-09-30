@@ -87,7 +87,7 @@ function agregarAlCarrito(guante, cantidad) {
   const existente = carrito.find((item) => item.nombre === guante.nombre);
 
   if (existente) {
-    existente.cantidad += gramos;
+    existente.cantidad += cantidad;
     existente.subtotal += precioFinal;
   } else {
     carrito.push({
