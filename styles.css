@@ -7,10 +7,24 @@ body,
 html {
   height: 100%;
 }
-
+body {
+  background-color: #dc5f00;
+}
 header {
   text-align: center;
   background-color: #fff;
+}
+h2 {
+  margin-top: 40px;
+  margin-left: 20px;
+}
+#acciones-carrito {
+  margin-left: 20px;
+  align-items: center;
+}
+#carrito-section {
+  margin-left: 20px;
+  align-items: center;
 }
 #guantes-container {
   display: flex;
@@ -19,6 +33,7 @@ header {
   gap: 24px;
   margin-left: 40px;
   margin-right: 40px;
+  margin-top: 40px;
 }
 .card {
   border: 1px solid #dc5f00;
