@@ -6,7 +6,7 @@ const guantes = [
     marca: "Title",
     precio: 50000,
     imagen: "../images/guante-rojo.jpg",
-    cantidad: 1,
+    stock: 1,
   },
   {
     id: 2,
@@ -14,7 +14,7 @@ const guantes = [
     marca: "Rulz",
     precio: 60000,
     imagen: "../images/guante-gris.jpg",
-    cantidad: 2,
+    stock: 2,
   },
   {
     id: 3,
@@ -22,7 +22,7 @@ const guantes = [
     marca: "Title",
     precio: 70000,
     imagen: "../images/guante-platinum.jpg",
-    cantidad: 3,
+    stock: 3,
   },
   {
     id: 4,
@@ -30,16 +30,16 @@ const guantes = [
     marca: "Title",
     precio: 145000,
     imagen: "../images/guante-gold.jpg",
-    cantidad: 1,
+    stock: 1,
   },
 ];
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-function imprimirGuantesHTML(guantes) {
+function imprimirGuantesHTML(productos) {
   const contenedorGuantes = document.getElementById("guantes-container");
 
-  for (const guante of guantes) {
+  for (const guante of productos) {
     const card = document.createElement("div");
     card.classList.add("card");
     card.innerHTML = `
@@ -59,7 +59,7 @@ function imprimirGuantesHTML(guantes) {
 
     contenedorGuantes.appendChild(card);
 
-    // eventos
+    // Eventos
     const boton = document.getElementById(`${guante.nombre}${guante.id}`);
     // boton.addEventListener("click", () => agregarAlCarrito(guante));
     boton.addEventListener("click", () => {
@@ -79,6 +79,20 @@ function agregarAlCarrito(guante, cantidad) {
 
   if (isNaN(cantidad) || cantidad < 1) {
     errorElemento.textContent = "Debe al menos comprar 1";
+    return;
+  }
+
+  const guanteEnCarrito = carrito.find((item) => item.nombre === guante.nombre);
+  // const stockGuante = guantes.find((item) => item.nombre === guante.nombre);
+  let cantidadEnCarrito = 0;
+  if (!!guanteEnCarrito) {
+    cantidadEnCarrito = guanteEnCarrito.cantidad;
+  }
+
+  if (cantidadEnCarrito + cantidad > guante.stock) {
+    errorElemento.textContent =
+      "Debe comprar máximo " + guante.stock + " par/pares";
+
     return;
   }
 
